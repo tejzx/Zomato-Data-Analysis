@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+# Load the dataset
+dataframe = pd.read_csv("Zomato data .csv")
+print(dataframe.head())
+# Function to handle ratings
+def handleRate(value):
+value = str(value).split('/')
+value = value[0] if value[0] != 'NEW' and value[0] != '-' else np.nan
+return float(value) if value else np.nan
+# Apply the function to the 'rate' column
+dataframe['rate'] = dataframe['rate'].apply(handleRate)
+dataframe['rate'] = dataframe['rate'].fillna(dataframe['rate'].mean()) # Fill missing values with the mean
+print("Data after preprocessing:")
+print(dataframe.head())
+# Handle missing values in other columns if necessary
+# For simplicity, let's assume only 'rate' column has missing values to handle
+# One-hot encode the categorical columns
+dataframe_encoded = pd.get_dummies(dataframe, columns=['listed_in(type)', 'location'], drop_first=True)
+# Feature selection: use relevant features for prediction
+# You may choose other columns depending on the dataset
+features = ['rate', 'votes', 'cost_for_two'] + [col for col in dataframe_encoded.columns if 'listed_in(type)' in col or 'location' in col]
+target = dataframe_encoded['listed_in(type)_Buffet'] # Use an example target from one-hot encoding
+# Split data into train and test sets
+X = dataframe_encoded[features]
+y = dataframe_encoded[target]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# Train a Logistic Regression model
+clf = LogisticRegression(max_iter=1000, random_state=42) # Increase max_iter if convergence warning occurs
+clf.fit(X_train, y_train)
+# Predict on the test set
+y_pred = clf.predict(X_test)
+# Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+# Display detailed classification report
+print(classification_report(y_test, y_pred))
+# Plotting a countplot of restaurant types for the original data
+sns.countplot(x='listed_in(type)', data=dataframe)
+plt.xlabel("Type of Restaurant")
+plt.ylabel("Count")
+plt.title("Distribution of Restaurant Types")
+plt.show()
