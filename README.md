@@ -1,20 +1,62 @@
-# Zomato Data Analysis
-Overview
-This project explores the Zomato restaurant dataset using Python. The goal is to uncover trends and insights related to restaurant ratings, cuisines, locations, and more. By leveraging libraries such as Pandas for data manipulation and Matplotlib for visualization, we aim to provide a comprehensive analysis of dining preferences and market dynamics.
+# 📌 Zomato Data Analysis Project
 
-# Key Features
-Trend Analysis: Identify shifts in culinary trends, including the rise of plant-based options and traditional cuisines.
-Restaurant Insights: Analyze metrics that define restaurant success, including ratings and customer feedback.
-Cuisine Popularity: Examine the popularity of various cuisines and how they evolve over time.
+## 🚀 Overview
+This project involves analyzing the **Zomato dataset** to gain insights into restaurant trends, customer preferences, and food pricing patterns. The analysis includes **data preprocessing, visualization, and machine learning models** to predict restaurant ratings and explore various factors affecting them.
 
-# Technologies Used
-Python: The primary programming language for analysis.
-Pandas: For data manipulation and analysis.
-Matplotlib & Seaborn: For creating visualizations to represent data insights.
-Scikit-learn: For predictive modeling and trend extrapolation.
+## 📂 Project Structure
+```
+├── data/                 # Dataset and cleaned data files
+├── notebooks/            # Jupyter notebooks for analysis
+├── src/                  # Python scripts for preprocessing & modeling
+├── models/               # Saved trained models
+├── README.md             # Project documentation
+├── requirements.txt      # Dependencies
+```
 
-# Getting Started
-Clone this repository.
-Download the Zomato dataset and place it in the project folder.
-Install required libraries: pip install pandas matplotlib seaborn scikit-learn.
-Run the provided Jupyter Notebook or explore the Python scripts for analysis.
+## 📊 Dataset Description
+The dataset contains information about:
+- **Restaurant details**: Name, location, cuisine types, price range, and online delivery options.
+- **Customer interactions**: Ratings, votes, and reviews.
+- **Geographical information**: City-wise restaurant distribution.
+
+## 🛠️ Installation
+To run this project locally, follow these steps:
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/Zomato-Analysis.git
+cd Zomato-Analysis
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+## 🔍 Exploratory Data Analysis (EDA)
+- Handling missing values & duplicates
+- Visualizing restaurant distribution across locations
+- Analyzing pricing patterns & online delivery impact
+
+## 🤖 Machine Learning Models
+- **Regression Model**: Predicting restaurant ratings.
+- **Classification Model**: Identifying high-rated restaurants.
+
+## 📈 Key Findings
+- The **average price range** varies significantly across different cuisines.
+- **Online delivery services** impact customer engagement & ratings.
+- **Restaurant location** is a key factor influencing popularity.
+
+## 📌 How to Use
+Run the Jupyter Notebook:
+```bash
+jupyter notebook zomato_project.ipynb
+```
+Modify hyperparameters in `src/model_training.py` to experiment with different models.
+
+## 🔗 References
+- [Zomato API](https://developers.zomato.com/documentation)
+- [Pandas Documentation](https://pandas.pydata.org/docs/)
+
+## 🤝 Contributing
+Want to contribute? Feel free to fork the repo and submit pull requests!
+
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
